@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React from 'react';
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
@@ -7,7 +6,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
     <header className="site-header">
       <div className="container nav-wrap">
         <a className="brand" href="/" aria-label="PNGHR home">
-          <Image src="/images/pnghr-logo.png" alt="PNGHR Consultant Firm" width={154} height={126} priority />
+          <span className="brand-mark">PNG</span>
           <div><strong>PNGHR</strong><span>Consultant Firm</span></div>
         </a>
         <nav aria-label="Primary navigation">
