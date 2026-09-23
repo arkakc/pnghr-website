@@ -19,16 +19,31 @@ export default function LeadForm() {
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState('loading');
+
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
+    const raw = Object.fromEntries(new FormData(form).entries());
+
+    if (raw.website) {
+      setState('success');
+      form.reset();
+      return;
+    }
+
+    const query = new URLSearchParams(window.location.search);
+    const source = query.get('utm_source') || 'Website';
+    const campaign = query.get('utm_campaign') || '';
+
     const response = await fetch('/api/leads', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...data, source: 'Website' })
+      body: JSON.stringify({ ...raw, source, campaign })
     });
+
     if (response.ok) {
       form.reset();
       setState('success');
+      const w = window as typeof window & { fbq?: (...args: unknown[]) => void };
+      w.fbq?.('track', 'Lead');
     } else {
       setState('error');
     }
@@ -36,6 +51,7 @@ export default function LeadForm() {
 
   return (
     <form className="lead-form" onSubmit={submit}>
+      <input className="hp" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="form-grid">
         <label><span>Name</span><input name="name" required placeholder="Your name" /></label>
         <label><span>Company</span><input name="company" placeholder="Company name" /></label>
