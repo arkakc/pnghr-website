@@ -20,6 +20,14 @@ const steps = [
   ['05', 'Improve', 'Review outcomes and strengthen performance over time.']
 ];
 
+const images = {
+  hero: 'https://images.pexels.com/photos/10202856/pexels-photo-10202856.jpeg?auto=compress&cs=tinysrgb&w=1800',
+  field: 'https://images.pexels.com/photos/37121404/pexels-photo-37121404.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  mining: 'https://images.pexels.com/photos/17839774/pexels-photo-17839774.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  construction: 'https://images.pexels.com/photos/19386931/pexels-photo-19386931.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  health: 'https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg?auto=compress&cs=tinysrgb&w=1600'
+};
+
 export default function Home() {
   const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '67572062639';
   return (
@@ -27,7 +35,7 @@ export default function Home() {
       <header className="site-header">
         <div className="container nav-wrap">
           <a className="brand" href="#top" aria-label="PNGHR home">
-            <Image src="/images/pnghr-logo.png" alt="PNGHR Consultant Firm" width={154} height={126} priority />
+            <span className="brand-mark">PNG</span>
             <div><strong>PNGHR</strong><span>Consultant Firm</span></div>
           </a>
           <nav aria-label="Primary navigation">
@@ -49,8 +57,9 @@ export default function Home() {
             </div>
             <div className="micro-trust"><span>PNG-owned</span><span>HSE expertise</span><span>Implementation-focused</span></div>
           </div>
+
           <div className="hero-visual">
-            <Image src="/images/team-training.jpg" alt="HSE team in safety gear" fill sizes="(max-width: 900px) 100vw, 52vw" priority />
+            <Image src={images.hero} alt="Construction professionals in safety gear" fill sizes="(max-width: 900px) 100vw, 52vw" priority />
             <div className="image-shade" />
             <div className="float-card card-a"><b>Risk Assessment</b><span>Identify • Control • Protect</span></div>
             <div className="float-card card-b"><b>HSE Training</b><span>Build safer teams</span></div>
@@ -79,8 +88,17 @@ export default function Home() {
 
       <section id="about" className="section soft-section">
         <div className="container split">
-          <div className="photo-panel"><Image src="/images/field-team.jpg" alt="PNGHR field team" fill sizes="(max-width: 900px) 100vw, 50vw" /><span className="photo-tag">Local expertise. Real operating environments.</span></div>
-          <div className="content-panel"><div className="eyebrow">About PNGHR</div><h2>Built for real operational environments</h2><p>PNGHR Consultant Firm supports organisations to detect, control and monitor workplace risks while integrating health, safety and environmental requirements into day-to-day operations.</p><div className="value-list"><div><b>Local understanding</b><span>Grounded in Papua New Guinea.</span></div><div><b>Multi-disciplinary capability</b><span>Safety, health, environmental and technical expertise.</span></div><div><b>Practical delivery</b><span>Solutions designed to be implemented, not just reported.</span></div></div></div>
+          <div className="photo-panel"><Image src={images.field} alt="Safety team reviewing a worksite" fill sizes="(max-width: 900px) 100vw, 50vw" /><span className="photo-tag">Local expertise. Real operating environments.</span></div>
+          <div className="content-panel">
+            <div className="eyebrow">About PNGHR</div>
+            <h2>Built for real operational environments</h2>
+            <p>PNGHR Consultant Firm supports organisations to detect, control and monitor workplace risks while integrating health, safety and environmental requirements into day-to-day operations.</p>
+            <div className="value-list">
+              <div><b>Local understanding</b><span>Grounded in Papua New Guinea.</span></div>
+              <div><b>Multi-disciplinary capability</b><span>Safety, health, environmental and technical expertise.</span></div>
+              <div><b>Practical delivery</b><span>Solutions designed to be implemented, not just reported.</span></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -89,11 +107,20 @@ export default function Home() {
       </section>
 
       <section id="industries" className="section industries-section">
-        <div className="container"><div className="section-head"><div><div className="eyebrow">Industries</div><h2>Supporting operationally complex sectors</h2></div><p>Initial website focus reflects sectors explicitly represented in PNGHR's company profile.</p></div><div className="industry-grid"><article className="industry-card"><Image src="/images/mining-site.jpg" alt="Mining operation" fill sizes="(max-width: 760px) 100vw, 50vw" /><div><span>01</span><h3>Mining</h3><p>Risk, site support and practical HSE systems.</p></div></article><article className="industry-card"><Image src="/images/safety-consultants.jpg" alt="Safety professionals on site" fill sizes="(max-width: 760px) 100vw, 50vw" /><div><span>02</span><h3>Construction</h3><p>Safer work, stronger systems and workforce capability.</p></div></article></div></div>
+        <div className="container">
+          <div className="section-head"><div><div className="eyebrow">Industries</div><h2>Supporting operationally complex sectors</h2></div><p>Initial website focus reflects sectors represented in PNGHR's company profile.</p></div>
+          <div className="industry-grid">
+            <article className="industry-card"><Image src={images.mining} alt="Mining environment" fill sizes="(max-width: 760px) 100vw, 50vw" /><div><span>01</span><h3>Mining</h3><p>Risk, site support and practical HSE systems.</p></div></article>
+            <article className="industry-card"><Image src={images.construction} alt="Construction site professionals" fill sizes="(max-width: 760px) 100vw, 50vw" /><div><span>02</span><h3>Construction</h3><p>Safer work, stronger systems and workforce capability.</p></div></article>
+          </div>
+        </div>
       </section>
 
       <section className="dark-feature">
-        <div className="container dark-grid"><div><div className="eyebrow gold">Occupational health</div><h2>Healthy people. Safer workplaces.</h2><p>Support for occupational health programmes, health risk assessment and workforce health monitoring.</p><a href="#contact" className="text-link">Talk to PNGHR →</a></div><div className="health-image"><Image src="/images/occupational-health.jpg" alt="Occupational health assessment" fill sizes="(max-width: 900px) 100vw, 48vw" /></div></div>
+        <div className="container dark-grid">
+          <div><div className="eyebrow gold">Occupational health</div><h2>Healthy people. Safer workplaces.</h2><p>Support for occupational health programmes, health risk assessment and workforce health monitoring.</p><a href="#contact" className="text-link">Talk to PNGHR →</a></div>
+          <div className="health-image"><Image src={images.health} alt="Occupational health consultation" fill sizes="(max-width: 900px) 100vw, 48vw" /></div>
+        </div>
       </section>
 
       <section id="insights" className="section">
@@ -104,7 +131,14 @@ export default function Home() {
         <div className="container contact-grid"><div><div className="eyebrow">Start a conversation</div><h2>Need HSE support?</h2><p>Tell PNGHR what you need. Your enquiry can be captured directly into the lead database for follow-up.</p><div className="contact-meta"><a href="tel:+67572062639">+675 7206 2639</a><a href="mailto:pnghrcf@gmail.com">pnghrcf@gmail.com</a><span>Waigani Heights, NCD, Papua New Guinea</span></div></div><LeadForm /></div>
       </section>
 
-      <footer><div className="container footer-grid"><div className="footer-brand"><b>PNGHR Consultant Firm</b><p>Health, Safety & Environmental solutions for organisations across Papua New Guinea.</p></div><div><b>Services</b><a href="#services">HSE Services</a><a href="#industries">Industries</a><a href="#contact">Consultation</a></div><div><b>Connect</b><a href={`https://wa.me/${wa}`}>WhatsApp</a><a href="mailto:pnghrcf@gmail.com">Email</a><a href="tel:+67572062639">Call</a></div><div className="footer-note">Website & digital systems by <b>8n8systems</b></div></div></footer>
+      <footer>
+        <div className="container footer-grid">
+          <div className="footer-brand"><b>PNGHR Consultant Firm</b><p>Health, Safety & Environmental solutions for organisations across Papua New Guinea.</p></div>
+          <div><b>Services</b><a href="#services">HSE Services</a><a href="#industries">Industries</a><a href="#contact">Consultation</a></div>
+          <div><b>Connect</b><a href={`https://wa.me/${wa}`}>WhatsApp</a><a href="mailto:pnghrcf@gmail.com">Email</a><a href="tel:+67572062639">Call</a></div>
+          <div className="footer-note">Website & digital systems by <b>8n8systems</b></div>
+        </div>
+      </footer>
       <a className="whatsapp-float" href={`https://wa.me/${wa}`} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">WA</a>
     </main>
   );
